@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "./Header/Header";
-import SearchBar from "./SearchBar/SearchBar";
-import FilterBar from "./FilterBar/FilterBar";
-import SearchResults from "./SearchResults/SearchResults";
+import Header from "../Header";
+import FilterBar from "../FilterBar/FilterBar";
+import SearchBar from "../SearchBar/SearchBar";
+import SearchResults from "../SearchResults/SearchResults";
 
 const books = [
   {
@@ -23,7 +23,7 @@ const books = [
   }
 ];
 
-export default class App extends React.Component {
+export default class GoogleApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

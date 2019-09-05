@@ -1,0 +1,56 @@
+key = AIzaSyAMwUnPu0Le4DE6lyYYSruNy12_m8vBU_k
+key=API_KEY
+
+https://www.googleapis.com/apiName/apiVersion/resourcePath?parameters
+
+Specific format for Books API URIs are:
+
+https://www.googleapis.com/books/v1/
+{collectionName}/resourceID?parameters
+
+==== Returns FREE eBooks ====
+GET https://www.googleapis.com/books/v1/
+volumes?q=flowers&filter=free-ebooks
+&key=yourAPIKey
+=============================
+
+==== Returns PRINT TYPE ====
+GET https://www.googleapis.com/books/v1/
+volumes?q=time&printType=magazines
+&key=yourAPIKey
+=============================
+
+resourceID is the identifier for a volume or bookshelf resource
+parameters are any parameters to apply to the query
+
+example: (perform a search for quilting)
+GET https://www.googleapis.com/books/v1/
+volumes?q=quilting&key=yourAPIKey
+
+
+example: (get information on volumme Mine)
+GET https://www.googleapis.com/books/v1/
+volumes/Mine&key=yourAPIKey
+
+
+The following example uses this approach to 
+display search results for "harry potter":
+
+<html>
+  <head>
+    <title>Books API Example</title>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script>
+      function handleResponse(response) {
+      for (var i = 0; i < response.items.length; i++) {
+        var item = response.items[i];
+        // in production code, item.text should have the HTML entities escaped.
+        document.getElementById("content").innerHTML += "<br>" + item.volumeInfo.title;
+      }
+    }
+    </script>
+    <script src="https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse"></script>
+  </body>
+</html>
