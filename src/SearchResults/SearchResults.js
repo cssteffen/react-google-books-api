@@ -8,7 +8,7 @@ export default class SearchResults extends React.Component {
         <li>
           <div className="bookList-item">
             <div className="bookList-item-image">
-              <img width="100px" height="150px" />
+              <img alt="book cover" width="100px" height="150px" />
             </div>
             <div className="bookList-item-content">
               <h2>Book Title</h2>

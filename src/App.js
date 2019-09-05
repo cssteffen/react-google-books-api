@@ -4,6 +4,8 @@ import SearchBar from "./SearchBar/SearchBar";
 import FilterBar from "./FilterBar/FilterBar";
 import SearchResults from "./SearchResults/SearchResults";
 
+//const books = [];
+/*
 const books = [
   {
     title: "Book Title",
@@ -22,6 +24,7 @@ const books = [
     description: "No evil"
   }
 ];
+*/
 
 export default class App extends React.Component {
   constructor(props) {
@@ -41,10 +44,12 @@ export default class App extends React.Component {
       "Content-Type": "application/json"
     };
     const API_Key = "AIzaSyAMwUnPu0Le4DE6lyYYSruNy12_m8vBU_k";
+    /*
     const params = {
       q: "books",
       key: API_Key
     };
+*/
     const fetchURL = url + "?" + "q=quilting&key=" + API_Key;
 
     fetch(fetchURL, options)
@@ -55,19 +60,34 @@ export default class App extends React.Component {
         return response;
       })
       .then(response => response.json())
-      .then(items => {
+      //.then(data => displayResults(data))
+
+      .then(data => {
+        console.log(data);
+        const apibooks = Object.keys(data).map(key => data[key].item[0]);
+
         this.setState({
-          books: items,
+          apibooks,
           error: null
         });
-        console.log(items);
+
+        console.log(apibooks);
       })
+
       .catch(err => {
         this.setState({
           error: err.message
         });
       });
   }
+  /*
+  displayResults(data) {
+    for (let i = 0; i < data.items.length; i++) {
+      books = Object.keys(data).map(key => data[key].items[i]);
+    }
+  }
+  */
+
   render() {
     return (
       <section className="App">

@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "../Header";
-import FilterBar from "../FilterBar/FilterBar";
-import SearchBar from "../SearchBar/SearchBar";
-import SearchResults from "../SearchResults/SearchResults";
+import Header from "../../Header/Header";
+import FilterBar from "../../FilterBar/FilterBar";
+import SearchBar from "../../SearchBar/SearchBar";
+import SearchResults from "../../SearchResults/SearchResults";
 
 const books = [
   {
