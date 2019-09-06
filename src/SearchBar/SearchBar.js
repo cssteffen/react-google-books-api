@@ -7,7 +7,16 @@ export default class SearchBar extends React.Component {
       <form className="searchBox_form">
         <label htmlFor="searchbox">Search:</label>
         <input placeholder="books" value="books"></input>
-        <button type="submit">Search</button>
+        <button
+          type="submit"
+          /*
+          onChange={e =>
+            this.props.handleSearchBox(e.target.value)
+            }
+         */
+        >
+          Search
+        </button>
       </form>
     );
   }

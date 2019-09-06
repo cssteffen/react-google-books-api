@@ -1,31 +1,7 @@
 import React from "react";
 import Header from "./Header/Header";
-import SearchBar from "./SearchBar/SearchBar";
-import FilterBar from "./FilterBar/FilterBar";
 import SearchResults from "./SearchResults/SearchResults";
-
-//const books = [];
-/*
-const books = [
-  {
-    title: "Book Title",
-    author: "Author(s)",
-    price: 9.99,
-    printType: "All",
-    url: "http://www.google.com",
-    coverImg: "",
-    description:
-      "Insert description fo book here and have more information from the google book API."
-  },
-  {
-    title: "Google",
-    url: "http://www.google.com",
-    rating: "3",
-    description: "No evil"
-  }
-];
-*/
-//let apiBooks = [];
+import SearchBox from "./SearchBox/SearchBox";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -36,23 +12,34 @@ export default class App extends React.Component {
       printTypeValue: "All",
       bookTypeValue: "No Filter"
     };
+    //console.log("Showing searchBoxValue");
+    //console.log(searchBoxValue);
+    console.log("props");
+    console.log(props);
   }
 
-  componentDidMount() {
-    const url = "https://www.googleapis.com/books/v1/volumes";
+  setSearch(searchBoxValue) {
+    this.setState({ searchBoxValue: searchBoxValue });
+    //this.handleSearch(searchBoxValue);
+  }
+
+  componentDidMount(searchBoxValue) {
+    const url = "https://www.googleapis.com/books/v1/volumes?q=";
     const options = {
       method: "GET",
       "Content-Type": "application/json"
     };
     const API_Key = "AIzaSyAMwUnPu0Le4DE6lyYYSruNy12_m8vBU_k";
-    /*
-    const params = {
-      q: "books",
-      key: API_Key
-    };
-*/
+
     /* ========= WILL NEED TO FIX THIS - but checking callback first ====== */
-    const fetchURL = url + "?" + "q=quilting&key=" + API_Key;
+    const fetchURL = url + searchBoxValue + "&key=" + API_Key;
+
+    /*
+      "&printType=" +
+      printTypeValue +
+      "&filter=" +
+      bookTypeValue +
+      */
 
     fetch(fetchURL, options)
       .then(response => {
@@ -64,9 +51,7 @@ export default class App extends React.Component {
       .then(response => response.json())
 
       .then(data => {
-        console.log(data);
         const apiBooks = data["items"];
-        console.log(apiBooks);
 
         this.setState({
           apiBooks,
@@ -80,14 +65,68 @@ export default class App extends React.Component {
       });
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.userID !== prevProps.userID) {
+      this.fetchURL(this.props.userID);
+    }
+  }
+
   render() {
     return (
       <section className="App">
         <Header />
-        <SearchBar />
-        <FilterBar />
+        <SearchBox
+          handleSearchBox={searchBoxValue => this.setSearch(searchBoxValue)}
+          /*handleSearch=
+        {this.state.handleSearch(printTypeValue, bookTypeValue, searchBoxValue)}
+        */
+        />
         <SearchResults books={this.state.apiBooks} />
       </section>
     );
   }
 }
+
+/*
+  handleSearch(searchBoxValue, printTypeValue, bookTypeValue) {
+    const url = "https://www.googleapis.com/books/v1/volumes?q=";
+    const options = {
+      method: "GET",
+      "Content-Type": "application/json"
+    };
+    const API_Key = "AIzaSyAMwUnPu0Le4DE6lyYYSruNy12_m8vBU_k";
+
+    /* ========= WILL NEED TO FIX THIS - but checking callback first ====== /
+    const fetchURL = url + searchBoxValue + "&key=" + API_Key;
+
+    /*
+      "&printType=" +
+      printTypeValue +
+      "&filter=" +
+      bookTypeValue +
+      *
+
+    fetch(fetchURL, options)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Something went wrong, please try again laterl");
+        }
+        return response;
+      })
+      .then(response => response.json())
+
+      .then(data => {
+        const apiBooks = data["items"];
+
+        this.setState({
+          apiBooks,
+          error: null
+        });
+      })
+      .catch(err => {
+        this.setState({
+          error: err.message
+        });
+      });
+  }
+  */
