@@ -7,7 +7,8 @@ export default class SearchBox extends React.Component {
     return (
       <div>
         <SearchBar
-        /*handleSearch={this.props.handleSearch(
+          handleSearchbox={this.props.handleSearchbox}
+          /*handleSearch={this.props.handleSearch(
             printTypeValue,
             bookTypeValue,
             searchBoxValue

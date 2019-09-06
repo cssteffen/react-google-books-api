@@ -14,16 +14,18 @@ export default class App extends React.Component {
     };
     //console.log("Showing searchBoxValue");
     //console.log(searchBoxValue);
-    console.log("props");
+    console.log("Super props");
     console.log(props);
   }
 
   setSearch(searchBoxValue) {
     this.setState({ searchBoxValue: searchBoxValue });
-    //this.handleSearch(searchBoxValue);
+    this.handleSearchInput(searchBoxValue);
   }
 
-  componentDidMount(searchBoxValue) {
+  componentDidMount() {}
+
+  handleSearchInput(searchBoxValue) {
     const url = "https://www.googleapis.com/books/v1/volumes?q=";
     const options = {
       method: "GET",
@@ -76,7 +78,7 @@ export default class App extends React.Component {
       <section className="App">
         <Header />
         <SearchBox
-          handleSearchBox={searchBoxValue => this.setSearch(searchBoxValue)}
+          handleSearchbox={searchBoxValue => this.setSearch(searchBoxValue)}
           /*handleSearch=
         {this.state.handleSearch(printTypeValue, bookTypeValue, searchBoxValue)}
         */
