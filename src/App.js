@@ -25,12 +25,13 @@ const books = [
   }
 ];
 */
+//let apiBooks = [];
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      apibooks: [],
+      apiBooks: [],
       searchBoxValue: "books",
       printTypeValue: "All",
       bookTypeValue: "No Filter"
@@ -50,6 +51,7 @@ export default class App extends React.Component {
       key: API_Key
     };
 */
+    /* ========= WILL NEED TO FIX THIS - but checking callback first ====== */
     const fetchURL = url + "?" + "q=quilting&key=" + API_Key;
 
     fetch(fetchURL, options)
@@ -60,33 +62,23 @@ export default class App extends React.Component {
         return response;
       })
       .then(response => response.json())
-      //.then(data => displayResults(data))
 
       .then(data => {
         console.log(data);
-        const apibooks = Object.keys(data).map(key => data[key].item[0]);
+        const apiBooks = data["items"];
+        console.log(apiBooks);
 
         this.setState({
-          apibooks,
+          apiBooks,
           error: null
         });
-
-        console.log(apibooks);
       })
-
       .catch(err => {
         this.setState({
           error: err.message
         });
       });
   }
-  /*
-  displayResults(data) {
-    for (let i = 0; i < data.items.length; i++) {
-      books = Object.keys(data).map(key => data[key].items[i]);
-    }
-  }
-  */
 
   render() {
     return (
@@ -94,7 +86,7 @@ export default class App extends React.Component {
         <Header />
         <SearchBar />
         <FilterBar />
-        <SearchResults />
+        <SearchResults books={this.state.apiBooks} />
       </section>
     );
   }
