@@ -12,6 +12,7 @@ export default class Card extends React.Component {
     const title = this.props.book.volumeInfo.title;
     const description = this.props.book.volumeInfo.description;
     const bookImage = this.props.book.volumeInfo.imageLinks.smallThumbnail;
+    const link = this.props.book.volumeInfo.canonicalVolumeLink;
 
     //const authors = this.props.book.volumeInfo.authors.join(", ");
     const authors = this.props.book.volumeInfo.authors;
@@ -23,17 +24,25 @@ export default class Card extends React.Component {
         : "Not For Sale";
 
     return (
-      <div className="bookList-item">
-        <div className="bookList-item-image">
-          <img src={bookImage} alt="book cover" width="100px" height="150px" />
-        </div>
-        <div className="bookList-item-content">
-          <h2>{title}</h2>
-          <p>
-            Author: {authors} <br />
-            Price: {cost}
-          </p>
-          <p>{description}</p>
+      <div className="display-results">
+        <div className="bookList-item">
+          <div className="bookList-item-image">
+            <img
+              src={bookImage}
+              alt="book cover"
+              width="150px" /*height="150px"*/
+            />
+          </div>
+          <div className="bookList-item-content">
+            <a href={link}>
+              <h2>{title}</h2>
+            </a>
+            <p>
+              Author: {authors} <br />
+              Price: {cost}
+            </p>
+            <p>{description}</p>
+          </div>
         </div>
       </div>
     );

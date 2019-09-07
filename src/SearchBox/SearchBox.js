@@ -4,10 +4,14 @@ import FilterBar from "../FilterBar/FilterBar";
 
 export default class SearchBox extends React.Component {
   render() {
+    console.log("OnSubmit props");
+    console.log(this.props);
+
     return (
       <div>
         <SearchBar
-          handleSearchbox={this.props.handleSearchbox}
+          onChange={this.props.onChange}
+          onSubmit={this.props.onSubmit}
           /*handleSearch={this.props.handleSearch(
             printTypeValue,
             bookTypeValue,

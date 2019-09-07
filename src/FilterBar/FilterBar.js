@@ -7,7 +7,11 @@ export default class FilterBar extends React.Component {
       <div className="filterBar_Box">
         <form className="printType_Form">
           <label htmlFor="printType">Print Type:</label>
-          <select className="printType">
+          <select
+            className="printType"
+            //value="INSERTprop"
+            //onChange="INSERTprop"
+          >
             <option value="all">All</option>
             <option value="books">Books</option>
             <option value="magazines">Magazines</option>
@@ -26,7 +30,11 @@ export default class FilterBar extends React.Component {
         </form>
         <form className="bookType_Form">
           <label htmlFor="bookType">Book Type:</label>
-          <select className="bookType">
+          <select
+            className="bookType"
+            //value="INSERTprop"
+            //onChange="INSERTprop"
+          >
             <option value="No Filter">No Filter</option>
             <option value="ebooks">E-books</option>
             <option value="free-ebooks">Free e-books</option>

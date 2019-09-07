@@ -4,15 +4,13 @@ import Card from "../Card/Card";
 
 export default class SearchResults extends React.Component {
   render() {
-    console.log("SearchResults props");
-    console.log(this.props);
+    console.log("<SearchResults /> props:" + this.props);
 
     const books = this.props.books.map((book, i) => (
       <Card key={i} book={book} />
     ));
 
-    console.log("SearchResults books");
-    console.log(books);
+    console.log("<SearchResults books/>:" + books);
 
     return (
       <ul>
