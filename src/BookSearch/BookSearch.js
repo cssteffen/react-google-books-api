@@ -3,7 +3,7 @@ import "./booksearch.css";
 
 export default class BookSearch extends React.Component {
   render() {
-    console.log("<BookSearch /> input value: " + this.props.value);
+    //console.log("<BookSearch /> input value: " + this.props.value);
 
     return (
       <div className="searchBar__Box">
@@ -31,17 +31,6 @@ export default class BookSearch extends React.Component {
                 <option value="all">All</option>
                 <option value="books">Books</option>
                 <option value="magazines">Magazines</option>
-                {/*
-          checked={select.val() === printTypeValue}
-          onChange=
-          {e =>
-            this.props.handleSearch(
-              printTypeValue,
-              bookTypeValue,
-              searchBoxValue
-            )
-          }
-        */}
               </select>
             </div>
             <div className="bookType_Form">
@@ -57,12 +46,6 @@ export default class BookSearch extends React.Component {
                 <option value="paid-ebooks">Paid e-books</option>
                 <option value="partial">Partial</option>
                 <option value="full">Full</option>
-                {/*
-          checked={select.val() === bookTypeValue}
-          onChange=
-          {e =>
-            this.props.handleSearch(e.target.value)}
-          */}
               </select>
             </div>
           </div>

@@ -11,12 +11,16 @@ export default class Card extends React.Component {
   render() {
     const title = this.props.book.volumeInfo.title;
     const description = this.props.book.volumeInfo.description;
-    const bookImage = this.props.book.volumeInfo.imageLinks.smallThumbnail;
+    const bookImage =
+      this.props.book.volumeInfo.imageLinks !== undefined
+        ? this.props.book.volumeInfo.imageLinks.smallThumbnail
+        : "https://icon-library.net/images/book-icon-transparent/book-icon-transparent-27.jpg";
     const link = this.props.book.volumeInfo.canonicalVolumeLink;
 
-    //const authors = this.props.book.volumeInfo.authors.join(", ");
-    const authors = this.props.book.volumeInfo.authors;
-    console.log(authors);
+    const authors =
+      this.props.book.volumeInfo.authors === undefined
+        ? this.props.book.volumeInfo.authors
+        : this.props.book.volumeInfo.authors.join(", ");
 
     const cost =
       this.props.book.saleInfo.saleability === "FOR_SALE"
@@ -48,17 +52,3 @@ export default class Card extends React.Component {
     );
   }
 }
-
-/* ========= TRIAL CODE ========== */
-/*
-const book = this.props.books.map((book, i) => (
-    // const { title, authors, description, imageLinks } = book.volumeInfo;
-    <Card
-      key={i}
-      bookTitle={title}
-      author={authors}
-      price={book.saleInfo.listPrice.amount}
-      description={description}
-      bookImage={imageLinks}
-    />
-*/

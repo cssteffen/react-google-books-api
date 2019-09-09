@@ -19,7 +19,9 @@ export default class SearchBox extends React.Component {
           )}*/
         />
         <FilterBar
-        /*handleSearch={this.props.handleSearch(
+          onChange={this.props.onChange}
+
+          /*handleSearch={this.props.handleSearch(
             printTypeValue,
             bookTypeValue,
             searchBoxValue
